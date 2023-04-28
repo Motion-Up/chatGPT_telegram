@@ -8,6 +8,7 @@ load_dotenv()
 CHAT_GPT_KEY = os.getenv('CHAT_GPT_KEY')
 IGNAT = os.getenv('IGNAT')
 NIKOLAY = os.getenv('NIKOLAY')
+SERGEY = os.getenv('SERGEY')
 
 
 class Telegram:
@@ -16,7 +17,7 @@ class Telegram:
         context.bot.send_message(chat_id=update.effective_chat.id, text="ChatGPT бот запущен!")
 
     def response_chatGPT(self, update, context):
-        if str(update.effective_chat.id) in [IGNAT, NIKOLAY]:
+        if str(update.effective_chat.id) in [IGNAT, NIKOLAY, SERGEY]:
             chat = ChatGPT(CHAT_GPT_KEY)
             response = chat.get_response_from_chat(update.message.text)
             context.bot.send_message(chat_id=update.effective_chat.id, text=response)
